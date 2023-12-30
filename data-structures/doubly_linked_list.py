@@ -21,11 +21,3 @@ class DLinkedList: #Doubly Linked List class
             new_node = DNode(data, None, self.tail) # New Node with the data, next pointer to none and prev pointer to tail is created.
             self.tail.next = new_node # Tails next pointer points to the new_node
             self.tail = new_node #the tail now points to new node
-L = DLinkedList()
-
-L.append(2)
-print(L.head)
-print(L.tail)
-L.append(3)
-print(L.head)
-print(L.tail)
