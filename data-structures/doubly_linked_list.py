@@ -39,5 +39,40 @@ class DLinkedList: #Doubly Linked List class
             self.tail.next = new_node # Tails next pointer points to the new_node
             self.tail = new_node #the tail now points to new node
 
+    def search(self, d): # Searched the liked list by value
+        i = 0
+        ptr = self.head
+        while ptr != None: # Loop until end of list reached
+            if ptr.data == d:
+                return i # Return the index if the data is the value you are looking for
+            ptr = ptr.next # Move the pointer foward
+            i += 1 # Update Counter
+        return -1 # Returns -1 if the value d does not exist
+    
+    def remove(self, i): # Removes item in the given index i
+        if self.head == None: #Case for Empty List
+            return None
+      
+        if i == 0: # Case to remove the first element
+            val = self.head.data
+            self.head = self.head.next
+            self.head.prev = None
+            self.length -= 1
+            return val
+        ptr = self.head
+        if i == self.length - 1: # Case to remove the last element in the list
+            self.tail = self.tail.prev
+            self.tail.next = None
+        while ptr.next != None: # Otherwise loops until the index is 1
+            if i == 1: # At which point the item ptr.next is deleted
+                val = ptr.next.data
+                ptr.next = ptr.next.next
+                ptr.next.prev = ptr
+                self.length -= 1
+                return val
+            ptr = ptr.next
+            i -= 1
+
+
 
 
