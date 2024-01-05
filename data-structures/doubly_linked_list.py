@@ -65,14 +65,34 @@ class DLinkedList: #Doubly Linked List class
             self.tail.next = None
         while ptr.next != None: # Otherwise loops until the index is 1
             if i == 1: # At which point the item ptr.next is deleted
-                val = ptr.next.data
-                ptr.next = ptr.next.next
+                val = ptr.next.data #Value to remove is stored
+                ptr.next = ptr.next.next # Pointer to next is updated so it skips one element(the one for removal)
                 ptr.next.prev = ptr
                 self.length -= 1
                 return val
             ptr = ptr.next
             i -= 1
-
+    def insert(self, i, d): # Inserts value d at index i
+        if self.head == None : # Deals with case if the DLinked List Empty
+            self.head = DNode(d,self.head,None)
+            self.tail = self.head
+        elif i == 0:
+            newnode = DNode(d,self.head,None)
+            self.head.prev = newnode
+            self.head = newnode
+            
+        else: 
+            ptr = self.head
+            while i>1 and ptr.next != None: #Loops until end of list is reached or the index before i is reached.
+                ptr = ptr.next
+                i -= 1
+            newnode = DNode(d,ptr.next,ptr)
+            if ptr.next is not None: #If there is currently a node in i.
+                ptr.next.prev = newnode
+            ptr.next = newnode
+        if newnode.next is None: #If there is no node after the newnode.
+                self.tail = newnode
+        self.length += 1
 
 
 
